@@ -1,16 +1,30 @@
+"use client";
 import { CarouselBar } from '@/components/News/Carousel'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import NewsCard from '@/components/News/NewsCard'
+import { fetchAllNews } from '@/helpers/api'
+import { News } from '@/helpers/types'
 
-const News = () => {
+const NewsSentiments = () => {
+  const [NewsData,setNewsData] = useState<News|null>(null);
+  useEffect(()=>{
+    const fetchNews = async()=>{
+      const data = await fetchAllNews();
+      setNewsData(data);
+      console.log(data)
+    }
+    fetchNews();
+  }, [])
   return (
     <div className="w-full max-w-screen-lg mx-auto px-4">
       <CarouselBar/>
       <div className='w-full max-h-5'>
-        <NewsCard imageUrl='' title='Title' author='author' description='Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur doloribus, placeat quidem error magnam neque perferendis debitis aliquam quae nesciunt'/>
+        {NewsData?.feed.map((newsItem,index)=>(
+          <NewsCard key={index} imageUrl={newsItem.banner_image} title={newsItem.title} author={newsItem.authors[0]} description={newsItem.summary}/>
+        ))}
       </div>
     </div>
   )
 }
 
-export default News
+export default NewsSentiments

@@ -3,9 +3,9 @@
 import React from 'react';
 import Image from 'next/image';
 import { Separator } from '../ui/separator';
-
-import img from '../../../public/1.webp'
 import { Card } from '../ui/card';
+
+const img: string = "https://cdn.benzinga.com/files/regularguy-eth-w9codxtsfts-unsplash_29.jpg?width=1200&height=800&fit=crop"
 
 
 interface NewsCardProps {
@@ -17,9 +17,9 @@ interface NewsCardProps {
 
 const NewsCard: React.FC<NewsCardProps> = ({ imageUrl, title, author, description }) => {
   return (
-    <Card className="flex border-2 border-gray-500 rounded-lg shadow-lg overflow-hidden my-3" style={{height: 160, backgroundColor:"#232323"}}>
+    <Card className="flex border-2 border-gray-500 rounded-lg shadow-lg overflow-hidden my-3" style={{ backgroundColor:"#232323"}}>
       <div>
-        <Image src={img} alt={title} width={200} height={200}/>
+        <img src={imageUrl? imageUrl:img} alt="" width={200}/>
       </div>
       <Separator orientation="vertical" className='mx-3' />
       <div className="w-2/3 mx-5">
