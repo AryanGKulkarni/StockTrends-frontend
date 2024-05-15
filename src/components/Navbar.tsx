@@ -8,15 +8,15 @@ const Navbar: React.FC = () => {
             <div className="max-w-7xl mx-auto px-4 flex items-center justify-between h-full">
                 <div>
                     <Link href="/">
-                        <div className="text-white text-lg font-semibold">Your Logo</div>
+                        <div className="text-white text-lg font-semibold">Stock Trends</div>
                     </Link>
                 </div>
                 <ul className="flex space-x-4">
-                    <NavItem name="Home" route="/" />
-                    <NavItem name="Data" route="/t-shirts" />
-                    <NavItem name="Exhange Rates" route="/hats" />
-                    <NavItem name="Crypto" route="/about" />
-                    <NavItem name="Commodities" route="/contact" />
+                    <NavItem name="News" route="/news" />
+                    <NavItem name="Stock Symbols" route="/stockSymbols" />
+                    <NavItem name="Data" route="/data" />
+                    <NavItem name="Exhange Rates" route="/exchangeRates" />
+                    <NavItem name="Crypto" route="/crypto" />
                 </ul>
             </div>
         </nav>

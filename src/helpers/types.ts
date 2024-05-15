@@ -47,4 +47,17 @@ export interface GainersType {
     top_gainers: TopGainers[];
     top_losers: TopGainers[];
 }
+
+export interface StockSymbolType {
+    currency: string;
+    description: string;
+    displaySymbol: string;
+    figi: string;
+    isin: string | null;
+    mic: string;
+    shareClassFIGI: string;
+    symbol: string;
+    symbol2: string;
+    type: string;
+}
   

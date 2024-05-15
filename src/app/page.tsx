@@ -1,9 +1,30 @@
-import Image from "next/image";
+"use client";
+import { CarouselBar } from '@/components/News/Carousel'
+import React, { useEffect, useState } from 'react'
+import NewsCard from '@/components/News/NewsCard'
+import { fetchAllNews } from '@/helpers/api'
+import { News } from '@/helpers/types'
 
-export default function Home() {
+const Home = () => {
+  const [NewsData,setNewsData] = useState<News|null>(null);
+  useEffect(()=>{
+    const fetchNews = async()=>{
+      const data = await fetchAllNews();
+      setNewsData(data);
+      console.log(data)
+    }
+    fetchNews();
+  }, [])
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      Home Page
-    </main>
-  );
+    <div className="w-full max-w-screen-lg mx-auto px-4">
+      <CarouselBar/>
+      <div className='w-full max-h-5'>
+        {NewsData?.feed.map((newsItem,index)=>(
+          <NewsCard key={index} imageUrl={newsItem.banner_image} title={newsItem.title} author={newsItem.authors[0]} description={newsItem.summary}/>
+        ))}
+      </div>
+    </div>
+  )
 }
+
+export default Home

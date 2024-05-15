@@ -10,6 +10,9 @@ import {
 } from "@/components/ui/carousel"
 import { Separator } from "../ui/separator"
 import { GainersType } from '@/helpers/types'
+import upArrow from "../../../public/up_arrow.png"
+import downArrow from "../../../public/down_arrow.png"
+import Image from 'next/image'
 
 export function CarouselBar() {
   const [GainersData,setGainersData] = useState<GainersType|null>(null);
@@ -40,7 +43,7 @@ export function CarouselBar() {
                 <CardContent>
                   <div className="flex justify-between my-3">
                     <h2>{item.price}</h2>
-                    <div>^</div>
+                    <Image src={upArrow} alt="" width={24} height={24}/>
                   </div>
                   <div className="my-3 text-green-600">
                     <h3>{item.change_amount}({item.change_percentage})</h3>
@@ -64,7 +67,7 @@ export function CarouselBar() {
                 <CardContent>
                   <div className="flex justify-between my-3">
                     <h2>{item.price}</h2>
-                    <div>^^</div>
+                    <Image src={downArrow} alt="" width={24} height={24}/>
                   </div>
                   <div className="my-3 text-red-600">
                     <h3>{item.change_amount}({item.change_percentage})</h3>
