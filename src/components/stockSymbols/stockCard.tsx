@@ -10,6 +10,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Separator } from '../ui/separator'
+import Link from 'next/link'
 
 interface stockCardProps {
     symbol: string;
@@ -32,7 +33,7 @@ const StockCard: React.FC<stockCardProps> = ({symbol, description, currency, typ
             </div>
             <Separator className='my-3'/>
             <div className="flex justify-between mt-2">
-                <Button>Analysis</Button>
+                <Link href={`/analysis/${symbol}`}><Button>Analysis</Button></Link>                
                 <Button>Watchlist</Button>
             </div>
         </CardContent>

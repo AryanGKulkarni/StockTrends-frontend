@@ -18,6 +18,12 @@ export const fetchTopGainers = async () => {
         top_losers: topLosers
     };
 };
+export const fetchOHLC = async (symbol: string) => {
+    const res = await fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&outputsize=full&apikey=${apikey}`);
+    const json = await res.json();
+
+    return json;
+};
 export const fetchStockSymbols = async () => {
     const res = await fetch(`https://finnhub.io/api/v1/stock/symbol?exchange=US&token=${finhubkey}`);
     const json = await res.json();

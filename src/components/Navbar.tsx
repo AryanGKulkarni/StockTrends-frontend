@@ -14,7 +14,7 @@ const Navbar: React.FC = () => {
                 <ul className="flex space-x-4">
                     <NavItem name="News" route="/news" />
                     <NavItem name="Stock Symbols" route="/stockSymbols" />
-                    <NavItem name="Data" route="/data" />
+                    <NavItem name="Watchlist" route="/watchlist" />
                     <NavItem name="Exhange Rates" route="/exchangeRates" />
                     <NavItem name="Crypto" route="/crypto" />
                 </ul>
