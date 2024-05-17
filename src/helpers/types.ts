@@ -60,4 +60,12 @@ export interface StockSymbolType {
     symbol2: string;
     type: string;
 }
+export interface WatchlistType {
+    id: number,
+    symbol: string,
+    description: string,
+    currency: string,
+    type: string,
+    user: number,
+}
   

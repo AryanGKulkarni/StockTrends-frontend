@@ -1,6 +1,7 @@
 const apikey = process.env.NEXT_PUBLIC_API_KEY
 const finhubkey = process.env.NEXT_PUBLIC_FINHUB_KEY
 const baseurl = process.env.NEXT_PUBLIC_BACKEND_URL
+import Cookies from "js-cookie";
 import { TopGainers } from "./types";
 
 export const fetchAllNews = async () => {
@@ -51,6 +52,44 @@ export const LoginAPI = async (data: any) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
+      });
+    const json = await res.json();
+    return json
+};
+export const PostWatchlistAPI = async (data: any) => {
+    // console.log(JSON.stringify(data))
+    const res = await fetch(`${baseurl}/api/stock/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${Cookies.get('accessToken')}`
+        },
+        body: JSON.stringify(data),
+      });
+    const json = await res.json();
+    return json
+};
+export const GetWatchlistAPI = async () => {
+    // console.log(JSON.stringify(data))
+    const res = await fetch(`${baseurl}/api/stock/`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${Cookies.get('accessToken')}`
+        },
+      });
+    const json = await res.json();
+    return json
+};
+export const DeleteWatchlistAPI = async (id: number) => {
+    // console.log(JSON.stringify(data))
+    const res = await fetch(`${baseurl}/api/stock/`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${Cookies.get('accessToken')}`
+        },
+        body: JSON.stringify({"id": id})
       });
     const json = await res.json();
     return json
