@@ -17,6 +17,10 @@ import {
 import { Input } from "@/components/ui/input"
 import { toast } from "@/components/ui/use-toast"
 import { Card } from '@/components/ui/card';
+import { SignupAPI } from '@/helpers/api';
+import { cookies } from 'next/headers';
+import Cookies from "js-cookie";
+import { useRouter } from 'next/navigation'
 
 const FormSchema = z.object({
     username: z.string().min(2, {
@@ -36,6 +40,7 @@ const FormSchema = z.object({
 type FormSchemaType = z.infer<typeof FormSchema>
 
 const SignUpForm = () => {
+    const router = useRouter();
     const form = useForm<FormSchemaType>({
         resolver: zodResolver(FormSchema),
         defaultValues: {
@@ -46,16 +51,26 @@ const SignUpForm = () => {
         },
     })
 
+    const Postdata = async (data: FormSchemaType)=>{
+        const res = await SignupAPI(data)
+        if(res.status==200){
+            Cookies.set("accessToken", res.token)
+            toast({
+                title: "Signed in succesfully",
+              })
+            router.push('/')  
+        }
+        else{
+            toast({
+                title: "Username already exists",
+                variant: "destructive"
+              })
+        }
+    }
+
     function onSubmit(data: FormSchemaType) {
-        toast({
-            title: "You submitted the following values:",
-            description: (
-              <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-                <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-              </pre>
-            ),
-          })
-        console.log(JSON.stringify(data, null, 2))
+        // console.log(JSON.stringify(data, null, 2))
+        Postdata(data) 
     }
 
     return (

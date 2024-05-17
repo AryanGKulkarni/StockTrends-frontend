@@ -1,5 +1,6 @@
 const apikey = process.env.NEXT_PUBLIC_API_KEY
 const finhubkey = process.env.NEXT_PUBLIC_FINHUB_KEY
+const baseurl = process.env.NEXT_PUBLIC_BACKEND_URL
 import { TopGainers } from "./types";
 
 export const fetchAllNews = async () => {
@@ -29,4 +30,28 @@ export const fetchStockSymbols = async () => {
     const json = await res.json();
     const data = json.slice(0,30);
     return data;
+};
+export const SignupAPI = async (data: any) => {
+    // console.log(JSON.stringify(data))
+    const res = await fetch(`${baseurl}/api/register/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+    const json = await res.json();
+    return json
+};
+export const LoginAPI = async (data: any) => {
+    // console.log(JSON.stringify(data))
+    const res = await fetch(`${baseurl}/api/login/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+    const json = await res.json();
+    return json
 };
