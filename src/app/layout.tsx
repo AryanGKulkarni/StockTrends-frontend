@@ -1,5 +1,6 @@
 // layout.tsx
 import React from 'react';
+import { Toaster } from "@/components/ui/toaster"
 import { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -30,6 +31,7 @@ const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                         </div>
                         <main className="flex-grow flex justify-center max-w-87">
                             {children}
+                            <Toaster />
                         </main>
                     </ThemeProvider>
                 </body>

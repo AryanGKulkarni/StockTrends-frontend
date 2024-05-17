@@ -1,6 +1,7 @@
 // components/NavBar.tsx
 import React from 'react';
 import Link from 'next/link';
+import { Button } from './ui/button';
 
 const Navbar: React.FC = () => {
     return (
@@ -15,8 +16,8 @@ const Navbar: React.FC = () => {
                     <NavItem name="News" route="/news" />
                     <NavItem name="Stock Symbols" route="/stockSymbols" />
                     <NavItem name="Watchlist" route="/watchlist" />
-                    <NavItem name="Exhange Rates" route="/exchangeRates" />
-                    <NavItem name="Crypto" route="/crypto" />
+                    <Link href="/login"><Button style={{height: 30, width: 60}}>Login</Button></Link>
+                    <Link href="/signup"><Button style={{height: 30}}>Signup</Button></Link>
                 </ul>
             </div>
         </nav>
