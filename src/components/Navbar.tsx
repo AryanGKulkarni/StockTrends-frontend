@@ -21,7 +21,7 @@ const Navbar: React.FC = () => {
             <div className="max-w-7xl mx-auto px-4 flex items-center justify-between h-full">
                 <div>
                     <Link href="/">
-                        <div className="text-white text-lg font-semibold">Stock Trends</div>
+                        <div className="text-white text-lg font-semibold">Market Trends</div>
                     </Link>
                 </div>
                 <ul className="flex space-x-4">

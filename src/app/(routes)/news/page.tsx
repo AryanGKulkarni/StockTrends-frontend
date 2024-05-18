@@ -20,7 +20,7 @@ const NewsSentiments = () => {
       <CarouselBar/>
       <div className='w-full max-h-5'>
         {NewsData?.feed.map((newsItem,index)=>(
-          <NewsCard key={index} imageUrl={newsItem.banner_image} title={newsItem.title} author={newsItem.authors[0]} description={newsItem.summary}/>
+          <NewsCard key={index} imageUrl={newsItem.banner_image} title={newsItem.title} author={newsItem.authors[0]} description={newsItem.summary} url={newsItem.url}/>
         ))}
       </div>
     </div>
