@@ -21,6 +21,7 @@ import { SignupAPI } from '@/helpers/api';
 import { cookies } from 'next/headers';
 import Cookies from "js-cookie";
 import { useRouter } from 'next/navigation'
+import { useAuth } from '@/Context Provider/AppProvider';
 
 const FormSchema = z.object({
     username: z.string().min(2, {
@@ -41,6 +42,7 @@ type FormSchemaType = z.infer<typeof FormSchema>
 
 const SignUpForm = () => {
     const router = useRouter();
+    const { setIsAuthenticated } = useAuth();
     const form = useForm<FormSchemaType>({
         resolver: zodResolver(FormSchema),
         defaultValues: {
@@ -55,6 +57,7 @@ const SignUpForm = () => {
         const res = await SignupAPI(data)
         if(res.status==200){
             Cookies.set("accessToken", res.token)
+            setIsAuthenticated(true)
             toast({
                 title: "Signed in succesfully",
               })

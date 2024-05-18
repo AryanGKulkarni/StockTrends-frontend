@@ -5,14 +5,11 @@ import Link from 'next/link';
 import { Button } from './ui/button';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation'
+import { useAuth } from '@/Context Provider/AppProvider';
 
 const Navbar: React.FC = () => {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const { setIsAuthenticated, isAuthenticated } = useAuth();
     const router = useRouter();
-    useEffect(() => {
-        const token = Cookies.get('accessToken');
-        setIsAuthenticated(!!token);
-    }, []);
 
     const handleLogout = () => {
         Cookies.remove('accessToken');

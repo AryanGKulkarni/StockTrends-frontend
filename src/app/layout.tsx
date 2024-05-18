@@ -6,7 +6,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/Navbar";
-
+import { AppProvider } from '@/Context Provider/AppProvider';
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -26,13 +26,15 @@ const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                         enableSystem
                         disableTransitionOnChange
                     >
-                        <div className="my-20">
-                          <Navbar />
-                        </div>
-                        <main className="flex-grow flex justify-center max-w-87">
-                            {children}
-                            <Toaster />
-                        </main>
+                        <AppProvider>
+                            <div className="my-20">
+                            <Navbar />
+                            </div>
+                            <main className="flex-grow flex justify-center max-w-87">
+                                {children}
+                                <Toaster />
+                            </main>
+                        </AppProvider>
                     </ThemeProvider>
                 </body>
             </html>

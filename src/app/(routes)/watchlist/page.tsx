@@ -6,16 +6,19 @@ import { WatchlistType } from '@/helpers/types';
 import { GetWatchlistAPI } from '@/helpers/api';
 import { toast } from "@/components/ui/use-toast"
 import { useRouter } from 'next/navigation'
+import { useWatchlist, useAuth } from '@/Context Provider/AppProvider';
 
 const WatchlistPage = () => {
   const router = useRouter();
-  const [watchlistData, setWatchlistData] = useState<WatchlistType[]>([]);
+  const { setWatchlistData, watchlistData } = useWatchlist();
+  const { setIsAuthenticated } = useAuth();
   const [call, setCall] = useState<boolean>(true);
   const fetchData = async () => {
     const res = await GetWatchlistAPI();
       if (res.status === 200) {
         setWatchlistData(res.payload);
       } else {
+        setIsAuthenticated(false);
         toast({
           title: "User not logged in",
           variant: "destructive",

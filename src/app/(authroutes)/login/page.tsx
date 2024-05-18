@@ -20,6 +20,7 @@ import { Card } from '@/components/ui/card';
 import Cookies from "js-cookie";
 import { useRouter } from 'next/navigation'
 import { LoginAPI } from '@/helpers/api';
+import { useAuth } from '@/Context Provider/AppProvider';
 
 const FormSchema = z.object({
     username: z.string().min(2, {
@@ -34,6 +35,7 @@ type FormSchemaType = z.infer<typeof FormSchema>
 
 const LoginForm = () => {
     const router = useRouter();
+    const { setIsAuthenticated } = useAuth();
     const form = useForm<FormSchemaType>({
         resolver: zodResolver(FormSchema),
         defaultValues: {
@@ -47,6 +49,7 @@ const LoginForm = () => {
         console.log(res)
         if(res.status==200){
             Cookies.set("accessToken", res.token)
+            setIsAuthenticated(true)
             toast({
                 title: "Signed in succesfully",
               })

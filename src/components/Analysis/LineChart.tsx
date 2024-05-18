@@ -25,7 +25,7 @@ const Chart: React.FC<ChartProps> = ({ohlc}) => {
   <>
   <Card style={{ backgroundColor:"#232323"}}>
     <CardHeader>
-      <CardTitle>Symbol</CardTitle>
+      <CardTitle>{ohlc['Meta Data']['2. Symbol']}</CardTitle>
       <CardDescription>Time Series(INTRADAY)</CardDescription>
     </CardHeader>
     <CardContent>

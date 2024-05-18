@@ -14,6 +14,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { DeleteWatchlistAPI } from '@/helpers/api';
 import { toast } from "@/components/ui/use-toast"
+import { useWatchlist, useAuth } from '@/Context Provider/AppProvider';
 
 interface stockCardProps {
     id: number;
@@ -24,15 +25,19 @@ interface stockCardProps {
 }
 
 const WatchlistCard: React.FC<stockCardProps> = ({id, symbol, description, currency, type}) => {
-
+    const { setWatchlistData, watchlistData } = useWatchlist();
+    const { setIsAuthenticated } = useAuth();
     const router = useRouter();
     const handleClick = async (id: number) =>{
         const res = await DeleteWatchlistAPI(id);
         if (res.status === 200) {
+            const newData = watchlistData.filter((item)=>{ return item.id!==id})
+            setWatchlistData(newData)
             toast({
             title: "Deleted Successfully",
             });
         } else {
+            setIsAuthenticated(false);
             toast({
             title: "User not logged in",
             variant: "destructive",
