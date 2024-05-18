@@ -19,6 +19,7 @@ const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         <>
             <html lang="en" suppressHydrationWarning>
                 <head />
+                <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
                 <body className="min-h-screen">
                     <ThemeProvider
                         attribute="class"
